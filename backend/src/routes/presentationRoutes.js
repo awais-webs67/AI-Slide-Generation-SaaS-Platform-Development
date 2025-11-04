@@ -1,61 +1,70 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const path = require('path');
 const { protect, requireActiveSubscription } = require('../middleware/auth');
 const { generationLimiter, uploadLimiter } = require('../middleware/rateLimiter');
+const presentationController = require('../controllers/presentationController');
 
-// TODO: Import controllers when created
-// const presentationController = require('../controllers/presentationController');
+// Configure multer for file upload
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, '../../uploads'));
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  const allowedTypes = [
+    'application/pdf',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'application/msword',
+    'text/plain'
+  ];
+  
+  if (allowedTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(new Error('Invalid file type. Only PDF, DOCX, DOC, and TXT allowed.'), false);
+  }
+};
+
+const upload = multer({
+  storage: storage,
+  fileFilter: fileFilter,
+  limits: {
+    fileSize: 500 * 1024 * 1024 // 500MB
+  }
+});
 
 // All routes require authentication
 router.use(protect);
 
 // Presentation CRUD routes
-router.get('/', (req, res) => {
-  res.json({ success: true, message: 'Get all presentations - TODO' });
-});
+router.get('/', presentationController.getAllPresentations);
 
-router.post('/', requireActiveSubscription, generationLimiter, (req, res) => {
-  res.json({ success: true, message: 'Create presentation - TODO' });
-});
+router.post(
+  '/',
+  requireActiveSubscription,
+  generationLimiter,
+  presentationController.createPresentation
+);
 
-router.get('/:id', (req, res) => {
-  res.json({ success: true, message: 'Get presentation by ID - TODO' });
-});
+router.get('/:id', presentationController.getPresentationById);
 
-router.put('/:id', (req, res) => {
-  res.json({ success: true, message: 'Update presentation - TODO' });
-});
+router.put('/:id', presentationController.updatePresentation);
 
-router.delete('/:id', (req, res) => {
-  res.json({ success: true, message: 'Delete presentation - TODO' });
-});
+router.delete('/:id', presentationController.deletePresentation);
 
 // Document upload route
-router.post('/upload', uploadLimiter, (req, res) => {
-  res.json({ success: true, message: 'Upload document - TODO' });
-});
-
-// Generation routes
-router.post('/:id/generate', generationLimiter, (req, res) => {
-  res.json({ success: true, message: 'Generate slides - TODO' });
-});
-
-router.get('/:id/progress', (req, res) => {
-  res.json({ success: true, message: 'Get generation progress - TODO' });
-});
-
-// Customization routes
-router.put('/:id/slides/:slideNumber', (req, res) => {
-  res.json({ success: true, message: 'Customize slide - TODO' });
-});
-
-// Export routes
-router.post('/:id/export/pdf', (req, res) => {
-  res.json({ success: true, message: 'Export to PDF - TODO' });
-});
-
-router.post('/:id/export/pptx', (req, res) => {
-  res.json({ success: true, message: 'Export to PPTX - TODO' });
-});
+router.post(
+  '/upload',
+  uploadLimiter,
+  upload.single('document'),
+  presentationController.uploadDocument
+);
 
 module.exports = router;

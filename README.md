@@ -1,246 +1,223 @@
-# AI Slides Platform - Complete SaaS Application
+# AI Slides Platform - Complete Full-Stack SaaS
 
-A production-ready AI-powered slide generation platform that enables users to create professional presentations through AI automation. Upload documents or provide prompts to generate stunning slides with customization options.
+> Generate professional presentations with AI using Google Gemini, document upload, and credit-based subscription system.
 
-## 🎯 Features
+## 🚀 Project Overview
 
-### ✅ Completed Features
-- **Authentication System**: JWT-based authentication with refresh tokens
-- **User Management**: Role-based access control (user, premium, admin)
-- **Credit System**: Flexible credit-based subscription model
-- **Document Processing**: Extract text from PDF, DOCX, and TXT files
-- **AI Integration**: Google Gemini API for content generation
-- **Database Models**: MongoDB schemas for users, presentations, transactions
-- **Rate Limiting**: Redis-backed rate limiting for API endpoints
-- **Security**: Helmet, CORS, input validation, password hashing
-- **Logging**: Winston-based comprehensive logging system
-- **Docker Support**: Docker Compose for local development
+A complete full-stack SaaS platform that generates presentation slides from prompts or uploaded documents using AI. Built with Express.js backend and vanilla JavaScript frontend.
 
-### 🚧 To Be Implemented
-- **Slide Generation Engine**: Complete implementation of AI slide generation
-- **Export Services**: PDF and PPTX export functionality
-- **Background Jobs**: BullMQ job queue for async processing
-- **Frontend Application**: Next.js UI with React components
-- **Admin Dashboard**: Analytics and management interface
-- **Payment Integration**: Stripe for subscription payments
-- **Email Service**: Transactional emails for notifications
+**Live Demo:** [Not yet deployed]
+**GitHub:** [Your repository URL]
 
-## 📋 Technology Stack
+---
+
+## ✨ Features
+
+### 🎯 Core Features
+- **AI-Powered Slide Generation** - Generate slides from text prompts using Google Gemini
+- **Document Upload** - Upload PDF, DOCX, DOC, or TXT files for automatic slide creation
+- **Credit-Based System** - Flexible subscription plans with credit tracking
+- **User Authentication** - Secure JWT-based authentication with access & refresh tokens
+- **Dashboard** - View presentations, credits, and subscription status
+- **Responsive UI** - Beautiful, modern interface built with TailwindCSS
+
+### 💼 Subscription Plans
+- **Trial** - 50 credits (free)
+- **Starter** - 500 credits/month ($9/month)
+- **Professional** - 2000 credits/month ($29/month)
+- **Enterprise** - 10000 credits/month ($99/month)
+
+### 🔒 Security Features
+- Password hashing with bcrypt (12 rounds)
+- JWT access tokens (15 min) + refresh tokens (7 days)
+- Rate limiting on all endpoints
+- Helmet.js security headers
+- CORS protection
+- Input validation with Joi
+
+---
+
+## 🛠️ Technology Stack
 
 ### Backend
-- **Runtime**: Node.js 18+
-- **Framework**: Express.js
-- **Database**: MongoDB with Mongoose ODM
-- **Cache/Queue**: Redis with IORedis
-- **Authentication**: JWT (JSON Web Tokens)
-- **AI**: Google Gemini API
-- **Document Processing**: pdf-parse, mammoth
-- **Export**: Puppeteer (PDF), PptxGenJS (PowerPoint)
-- **Job Queue**: BullMQ (to be implemented)
+- **Framework:** Express.js (Node.js)
+- **Database:** MongoDB with Mongoose ODM
+- **Cache:** Redis with IORedis
+- **AI:** Google Gemini Pro API
+- **Authentication:** JWT (jsonwebtoken)
+- **Security:** Helmet, bcryptjs, express-rate-limit
+- **File Processing:** pdf-parse, mammoth, multer
+- **Logging:** Winston
 
-### Frontend (To Be Built)
-- **Framework**: Next.js 14 with React 18
-- **Styling**: Tailwind CSS + Shadcn/ui
-- **State Management**: Zustand + React Query
-- **Forms**: React Hook Form + Zod validation
-- **Charts**: Chart.js or Recharts
+### Frontend
+- **HTML5/CSS3** with TailwindCSS
+- **Vanilla JavaScript** (no framework)
+- **HTTP Client:** Axios
+- **Icons:** Font Awesome
 
-### DevOps
-- **Containerization**: Docker + Docker Compose
-- **Process Management**: PM2 (for production)
-- **Monitoring**: Winston logging + Redis monitoring
+### Infrastructure
+- **Containerization:** Docker & Docker Compose
+- **Development:** Nodemon, PM2
+- **Testing:** Jest (configured)
+
+---
+
+## 📋 Prerequisites
+
+Before you begin, ensure you have:
+
+1. **Node.js** (v18 or higher)
+   - Download: https://nodejs.org/
+   - Verify: `node --version && npm --version`
+
+2. **Docker & Docker Compose**
+   - Download: https://www.docker.com/get-started
+   - Verify: `docker --version && docker-compose --version`
+
+3. **Git**
+   - Download: https://git-scm.com/
+   - Verify: `git --version`
+
+4. **Google Gemini API Key**
+   - Get it free: https://makersuite.google.com/app/apikey
+   - Sign in with Google account
+   - Click "Create API Key"
+
+---
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### 1. Clone Repository
 
-- Node.js 18 or higher
-- MongoDB 7.0+ (or Docker)
-- Redis 7.0+ (or Docker)
-- Google Gemini API key
-
-### Option 1: Docker Compose (Recommended)
-
-1. **Clone and setup**:
 ```bash
-cd /home/user/ai-slides-platform
+git clone <your-repo-url>
+cd webapp
+```
+
+### 2. Setup Backend
+
+```bash
+cd backend
+
+# Install dependencies
+npm install
+
+# Create environment file
 cp .env.example .env
+
+# Edit .env and add your configuration:
+# - GEMINI_API_KEY=your_actual_api_key_here
+# - JWT_SECRET=your_random_secret_string
+# - JWT_REFRESH_SECRET=your_random_refresh_secret
 ```
 
-2. **Configure environment variables**:
-Edit `.env` file and add your keys:
-```env
-# Required
-GEMINI_API_KEY=your-gemini-api-key-here
-JWT_SECRET=your-generated-jwt-secret
-JWT_REFRESH_SECRET=your-generated-refresh-secret
+### 3. Start Infrastructure Services
 
-# Optional (defaults provided)
-NODE_ENV=development
-MONGODB_URI=mongodb://mongodb:27017/ai-slides-platform
-REDIS_HOST=redis
-```
-
-3. **Start services with Docker**:
 ```bash
+# From project root directory
 docker-compose up -d
+
+# Verify services are running
+docker-compose ps
 ```
 
-4. **Install backend dependencies**:
+You should see:
+- `mongodb` running on port 27017
+- `redis` running on port 6379
+
+### 4. Start Backend Server
+
 ```bash
 cd backend
-npm install
-```
 
-5. **Start backend server**:
-```bash
+# Development mode with auto-reload
 npm run dev
+
+# Production mode
+npm start
 ```
 
-6. **Access the application**:
-- Backend API: http://localhost:5000
-- Health Check: http://localhost:5000/health
-- MongoDB: localhost:27017
-- Redis: localhost:6379
+Backend will run on: **http://localhost:5000**
 
-### Option 2: Local Installation (Without Docker)
+### 5. Start Frontend
 
-1. **Install MongoDB** and **Redis** on your system
-
-2. **Clone and setup**:
 ```bash
-cd /home/user/ai-slides-platform
-cp .env.example .env
+# Open another terminal
+cd frontend
+
+# Open index.html in browser
+# Option 1: Double-click index.html
+# Option 2: Use a local server
+python3 -m http.server 3000
+# or
+npx http-server -p 3000
 ```
 
-3. **Configure environment variables**:
-Edit `.env` with your local settings:
-```env
-GEMINI_API_KEY=your-api-key
-JWT_SECRET=your-secret
-MONGODB_URI=mongodb://localhost:27017/ai-slides-platform
-REDIS_HOST=localhost
-REDIS_PORT=6379
-```
+Frontend will run on: **http://localhost:3000**
 
-4. **Install backend dependencies**:
-```bash
-cd backend
-npm install
-```
-
-5. **Start MongoDB and Redis** services on your system
-
-6. **Run backend**:
-```bash
-npm run dev
-```
+---
 
 ## 📁 Project Structure
 
 ```
-ai-slides-platform/
-├── backend/
+webapp/
+├── backend/                    # Express.js Backend
 │   ├── src/
-│   │   ├── config/          # Database and Redis configuration
-│   │   ├── controllers/     # Request handlers
-│   │   ├── models/          # MongoDB schemas
-│   │   ├── routes/          # API route definitions
-│   │   ├── services/        # Business logic (AI, documents, exports)
-│   │   ├── jobs/            # Background job processors
-│   │   ├── middleware/      # Auth, validation, rate limiting
-│   │   ├── utils/           # Helper functions
-│   │   └── server.js        # Express app entry point
-│   ├── uploads/             # Temporary file storage
-│   ├── exports/             # Generated export files
-│   ├── logs/                # Application logs
+│   │   ├── config/            # Database and Redis configuration
+│   │   │   ├── database.js
+│   │   │   └── redis.js
+│   │   ├── controllers/       # Request handlers
+│   │   │   ├── authController.js
+│   │   │   └── presentationController.js
+│   │   ├── middleware/        # Auth and rate limiting
+│   │   │   ├── auth.js
+│   │   │   └── rateLimiter.js
+│   │   ├── models/            # MongoDB schemas
+│   │   │   ├── User.js
+│   │   │   ├── Presentation.js
+│   │   │   ├── Transaction.js
+│   │   │   └── SystemLog.js
+│   │   ├── routes/            # API routes
+│   │   │   ├── authRoutes.js
+│   │   │   ├── presentationRoutes.js
+│   │   │   ├── creditRoutes.js
+│   │   │   └── adminRoutes.js
+│   │   ├── services/          # Business logic
+│   │   │   ├── geminiService.js
+│   │   │   └── documentService.js
+│   │   ├── utils/             # Helper functions
+│   │   │   ├── creditSystem.js
+│   │   │   ├── jwtUtils.js
+│   │   │   └── logger.js
+│   │   └── server.js          # Express app entry point
+│   ├── uploads/               # Temporary file uploads
+│   ├── logs/                  # Application logs
+│   ├── package.json
+│   └── .env.example
+│
+├── frontend/                  # Vanilla JS Frontend
+│   ├── index.html             # Main HTML (landing, dashboard, modals)
+│   ├── app.js                 # JavaScript logic
 │   └── package.json
-├── frontend/                # Next.js application (to be built)
-├── docker-compose.yml       # Docker orchestration
-├── .env.example             # Environment template
-├── .gitignore
-└── README.md
+│
+├── docker-compose.yml         # MongoDB + Redis containers
+├── .env.example              # Environment variables template
+├── .gitignore                # Git ignore rules
+├── README.md                 # This file
+└── BEGINNER_COMPLETE_GUIDE.md # Detailed setup guide
+
 ```
 
-## 🔑 API Endpoints
-
-### Authentication (`/api/v1/auth`)
-- `POST /register` - Register new user
-- `POST /login` - Login user
-- `POST /logout` - Logout user
-- `POST /refresh` - Refresh access token
-- `GET /me` - Get current user profile
-- `PUT /profile` - Update user profile
-- `PUT /password` - Change password
-
-### Presentations (`/api/v1/presentations`)
-- `GET /` - List all presentations
-- `POST /` - Create new presentation
-- `GET /:id` - Get presentation details
-- `PUT /:id` - Update presentation
-- `DELETE /:id` - Delete presentation
-- `POST /upload` - Upload document
-- `POST /:id/generate` - Generate slides
-- `GET /:id/progress` - Get generation progress
-- `PUT /:id/slides/:slideNumber` - Customize slide
-- `POST /:id/export/pdf` - Export to PDF
-- `POST /:id/export/pptx` - Export to PPTX
-
-### Credits (`/api/v1/credits`)
-- `GET /balance` - Get credit balance
-- `GET /transactions` - Get transaction history
-- `GET /costs` - Get credit cost breakdown
-
-### Admin (`/api/v1/admin`)
-- `GET /stats` - Dashboard statistics
-- `GET /users` - List all users
-- `GET /users/:id` - Get user details
-- `PUT /users/:id` - Update user
-- `DELETE /users/:id` - Delete user
-- `POST /users/:id/credits` - Adjust user credits
-- `GET /logs` - System logs
-- `GET /health` - System health metrics
-
-## 💳 Credit System
-
-### Operations and Costs
-- **Slide Generation**: 10 credits per slide
-- **AI Research**: 5 credits per slide
-- **Slide Customization**: 15 credits per slide
-- **PDF Export**: 20 credits
-- **PPTX Export**: 30 credits
-- **Document Processing**: 1 credit per MB
-- **Premium Template**: 5 credits per slide
-
-### Subscription Plans
-
-#### 🆓 Trial (Free)
-- **Duration**: 7 days
-- **Credits**: 50
-- **Features**: Up to 5 presentations, 10 slides each, 1 export
-
-#### 💼 Starter ($9.99/month)
-- **Credits**: 500/month (3-month rollover)
-- **Features**: Unlimited presentations, 20 slides max, 10 exports/month
-
-#### 🚀 Professional ($29.99/month)
-- **Credits**: 2000/month (6-month rollover)
-- **Features**: Unlimited presentations, 50 slides max, unlimited exports
-
-#### 🏢 Enterprise ($99.99/month)
-- **Credits**: 10000/month (12-month rollover)
-- **Features**: Everything unlimited, custom branding, API access
+---
 
 ## 🔧 Configuration
 
-### Environment Variables
+### Backend Environment Variables (.env)
 
 ```env
-# Server
+# Server Configuration
 NODE_ENV=development
 PORT=5000
-API_URL=http://localhost:5000
-FRONTEND_URL=http://localhost:3000
 
 # Database
 MONGODB_URI=mongodb://localhost:27017/ai-slides-platform
@@ -249,229 +226,406 @@ MONGODB_URI=mongodb://localhost:27017/ai-slides-platform
 REDIS_HOST=localhost
 REDIS_PORT=6379
 
-# Authentication
-JWT_SECRET=your-super-secret-key
-JWT_REFRESH_SECRET=your-refresh-secret
-JWT_EXPIRE=24h
-JWT_REFRESH_EXPIRE=30d
+# JWT Authentication
+JWT_SECRET=your_very_secure_random_string_here_change_this
+JWT_REFRESH_SECRET=your_very_secure_refresh_string_here_change_this
+JWT_EXPIRE=15m
+JWT_REFRESH_EXPIRE=7d
 
-# AI Service
-GEMINI_API_KEY=your-gemini-api-key
-GEMINI_MODEL=gemini-pro
-
-# File Upload
-MAX_FILE_SIZE=524288000
-UPLOAD_DIR=./uploads
-EXPORT_DIR=./exports
-
-# Rate Limiting
-RATE_LIMIT_WINDOW_MS=900000
-RATE_LIMIT_MAX_REQUESTS=100
+# Google Gemini AI
+GEMINI_API_KEY=your_gemini_api_key_here
 
 # CORS
 CORS_ORIGIN=http://localhost:3000
 
-# Credits
-FREE_TRIAL_CREDITS=50
-FREE_TRIAL_DAYS=7
+# File Upload
+MAX_FILE_SIZE=524288000  # 500MB in bytes
+UPLOAD_DIR=./uploads
+
+# Rate Limiting
+RATE_LIMIT_WINDOW_MS=900000  # 15 minutes
+RATE_LIMIT_MAX_REQUESTS=100
 ```
+
+### Frontend Configuration (app.js)
+
+The API URL is configured at the top of `frontend/app.js`:
+
+```javascript
+const API_URL = 'http://localhost:5000/api/v1';
+```
+
+For production, change this to your production backend URL.
+
+---
 
 ## 🧪 Testing
 
-```bash
-# Run tests
-npm test
-
-# Run tests with coverage
-npm run test:coverage
-
-# Run specific test file
-npm test -- authController.test.js
-```
-
-## 📊 Monitoring & Logs
-
-### Log Files
-- `logs/error.log` - Error logs
-- `logs/combined.log` - All logs
-- `logs/exceptions.log` - Uncaught exceptions
-- `logs/rejections.log` - Unhandled promise rejections
-
-### Check Logs
-```bash
-# View backend logs
-tail -f backend/logs/combined.log
-
-# View error logs only
-tail -f backend/logs/error.log
-
-# Docker logs
-docker-compose logs -f backend
-```
-
-## 🔒 Security Features
-
-- **Password Hashing**: bcrypt with 12 rounds
-- **JWT Authentication**: Access + refresh token pattern
-- **Rate Limiting**: Redis-backed, plan-based limits
-- **Input Validation**: Joi schemas
-- **CORS Protection**: Configured origins
-- **Helmet**: Security headers
-- **Cookie Security**: HttpOnly, Secure, SameSite
-- **File Validation**: Type and size checks
-
-## 🚀 Deployment
-
-### Production Checklist
-
-1. **Environment Setup**:
-```bash
-# Set production environment
-NODE_ENV=production
-
-# Use strong secrets
-JWT_SECRET=$(openssl rand -base64 32)
-JWT_REFRESH_SECRET=$(openssl rand -base64 32)
-
-# Configure production URLs
-API_URL=https://api.yourdomain.com
-FRONTEND_URL=https://yourdomain.com
-```
-
-2. **Database**:
-- Use MongoDB Atlas or managed MongoDB
-- Enable authentication
-- Configure connection pooling
-- Set up automated backups
-
-3. **Redis**:
-- Use Redis Cloud or managed Redis
-- Enable persistence
-- Configure maxmemory policies
-
-4. **Security**:
-- Enable HTTPS (SSL certificates)
-- Set secure cookie flags
-- Configure firewall rules
-- Enable rate limiting
-- Set up API key rotation
-
-5. **Monitoring**:
-- Set up error tracking (Sentry)
-- Configure uptime monitoring
-- Enable performance monitoring
-- Set up log aggregation
-
-### Deploy to VPS (DigitalOcean, Linode, etc.)
+### Test Backend API
 
 ```bash
-# Install Node.js and dependencies
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt-get install -y nodejs mongodb redis
+# Health check
+curl http://localhost:5000/health
 
-# Clone repository
-git clone <your-repo-url>
-cd ai-slides-platform
+# Register a user
+curl -X POST http://localhost:5000/api/v1/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Test User",
+    "email": "test@example.com",
+    "password": "SecurePass123!"
+  }'
 
-# Install dependencies
-cd backend && npm install --production
+# Login
+curl -X POST http://localhost:5000/api/v1/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "test@example.com",
+    "password": "SecurePass123!"
+  }'
 
-# Setup PM2
-sudo npm install -g pm2
-pm2 start src/server.js --name ai-slides-api
-pm2 save
-pm2 startup
-
-# Configure Nginx reverse proxy
-sudo nano /etc/nginx/sites-available/ai-slides
+# Get user info (replace TOKEN with actual token from login)
+curl http://localhost:5000/api/v1/auth/me \
+  -H "Authorization: Bearer YOUR_TOKEN_HERE"
 ```
 
-### Deploy with Docker
+### Test Frontend
+
+1. Open `http://localhost:3000` in browser
+2. Click "Sign Up" and create an account
+3. Login with your credentials
+4. View dashboard with your 50 trial credits
+5. Click "Create Presentation" to test slide generation
+
+---
+
+## 📊 API Endpoints
+
+### Authentication (`/api/v1/auth`)
+- `POST /register` - Register new user
+- `POST /login` - Login user
+- `POST /logout` - Logout user
+- `GET /me` - Get current user
+- `POST /refresh-token` - Refresh access token
+- `PUT /profile` - Update user profile
+- `PUT /change-password` - Change password
+
+### Presentations (`/api/v1/presentations`)
+- `GET /` - Get all user presentations
+- `GET /:id` - Get single presentation
+- `POST /` - Create presentation from prompt
+- `POST /upload` - Upload document and create presentation
+- `PUT /:id` - Update presentation
+- `DELETE /:id` - Delete presentation
+
+### Credits (`/api/v1/credits`)
+- `GET /balance` - Get credit balance
+- `GET /history` - Get transaction history
+- `POST /purchase` - Purchase credit package (admin)
+
+### Admin (`/api/v1/admin`)
+- `GET /users` - List all users
+- `GET /stats` - Platform statistics
+- `PUT /users/:id/credits` - Adjust user credits
+- `PUT /users/:id/subscription` - Update subscription
+
+---
+
+## 🎨 Frontend Features
+
+### Landing Page
+- Hero section with call-to-action
+- Features showcase
+- Pricing plans
+- Login/Register modals
+
+### Dashboard
+- Credit balance display
+- Presentations count
+- Recent presentations list
+- Quick actions
+
+### Create Presentation
+- **Method 1:** Text prompt input
+- **Method 2:** Document upload (PDF, DOCX, DOC, TXT)
+- Slide count selection (1-30 slides)
+- Real-time credit cost calculation
+
+### Presentation View
+- Slide thumbnails
+- Edit capabilities
+- Export options (coming soon)
+
+---
+
+## 💾 Database Models
+
+### User Model
+```javascript
+{
+  name: String,
+  email: String (unique),
+  password: String (hashed),
+  role: String (user, premium, admin),
+  subscription: {
+    plan: String (trial, starter, professional, enterprise),
+    status: String,
+    startDate: Date,
+    endDate: Date
+  },
+  credits: Number,
+  usage: {
+    presentationsCreated: Number,
+    slidesGenerated: Number,
+    documentsProcessed: Number
+  }
+}
+```
+
+### Presentation Model
+```javascript
+{
+  user: ObjectId,
+  title: String,
+  sourceType: String (prompt, document, url),
+  sourcePrompt: String,
+  sourceDocument: {
+    filename: String,
+    filepath: String,
+    mimetype: String,
+    size: Number
+  },
+  outline: Array,
+  slides: [{
+    slideNumber: Number,
+    title: String,
+    content: Object,
+    notes: String
+  }],
+  status: String (draft, analyzing, outlining, sketching, generating, completed, failed),
+  metadata: Object
+}
+```
+
+---
+
+## 🔐 Security Best Practices
+
+1. **Never commit `.env` files** - Always use `.env.example` as template
+2. **Use strong JWT secrets** - Generate random strings for JWT_SECRET
+3. **Change default passwords** - Update MongoDB/Redis passwords in production
+4. **Enable HTTPS** - Use SSL certificates in production
+5. **Rate limiting** - Already configured for all endpoints
+6. **Input validation** - All inputs are validated with Joi
+7. **Password requirements** - Minimum 8 characters enforced
+
+---
+
+## 🚢 Production Deployment
+
+### Backend Deployment (Heroku Example)
 
 ```bash
-# Build images
-docker-compose build
+# Install Heroku CLI
+# https://devcenter.heroku.com/articles/heroku-cli
 
-# Start in production mode
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+# Login
+heroku login
 
-# Scale backend instances
-docker-compose up -d --scale backend=3
+# Create app
+heroku create your-app-name
+
+# Add MongoDB addon
+heroku addons:create mongolab:sandbox
+
+# Add Redis addon
+heroku addons:create heroku-redis:hobby-dev
+
+# Set environment variables
+heroku config:set JWT_SECRET=your_production_secret
+heroku config:set GEMINI_API_KEY=your_gemini_key
+heroku config:set CORS_ORIGIN=https://your-frontend-domain.com
+
+# Deploy
+git push heroku main
+
+# View logs
+heroku logs --tail
 ```
 
-## 🛠️ Development
+### Frontend Deployment (Netlify/Vercel)
 
-### Setup Development Environment
+**Netlify:**
+```bash
+# Install Netlify CLI
+npm install -g netlify-cli
+
+# Deploy frontend directory
+cd frontend
+netlify deploy --prod
+
+# Update API_URL in app.js to your backend URL
+```
+
+**Vercel:**
+```bash
+# Install Vercel CLI
+npm install -g vercel
+
+# Deploy frontend directory
+cd frontend
+vercel --prod
+```
+
+**Important:** Update `API_URL` in `frontend/app.js` to your production backend URL before deploying.
+
+---
+
+## 🐛 Troubleshooting
+
+### Backend Issues
+
+**Problem:** MongoDB connection error
+```bash
+# Solution: Check if MongoDB container is running
+docker-compose ps
+docker-compose logs mongodb
+```
+
+**Problem:** Redis connection error
+```bash
+# Solution: Check if Redis container is running
+docker-compose logs redis
+```
+
+**Problem:** Gemini API error
+```bash
+# Solution: Verify your API key
+curl -H "x-goog-api-key: YOUR_API_KEY" \
+  https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent
+```
+
+### Frontend Issues
+
+**Problem:** CORS errors in browser console
+```bash
+# Solution: Ensure backend CORS_ORIGIN matches frontend URL
+# Check backend/.env: CORS_ORIGIN=http://localhost:3000
+```
+
+**Problem:** Login not working
+```bash
+# Solution: Check browser console for errors
+# Verify backend is running on http://localhost:5000
+# Check API_URL in frontend/app.js
+```
+
+### Docker Issues
+
+**Problem:** Port already in use
+```bash
+# Solution: Stop existing services
+docker-compose down
+# Or change ports in docker-compose.yml
+```
+
+---
+
+## 📈 Monitoring & Logs
+
+### Backend Logs
+
+Logs are stored in `backend/logs/` directory:
+- `error.log` - Error logs
+- `combined.log` - All logs
+
+View logs:
+```bash
+cd backend
+tail -f logs/combined.log
+```
+
+### Docker Logs
 
 ```bash
-# Install dependencies
-cd backend && npm install
+# View all service logs
+docker-compose logs
 
-# Start in development mode with auto-reload
-npm run dev
+# View specific service
+docker-compose logs mongodb
+docker-compose logs redis
 
-# Run linter
-npm run lint
+# Follow logs
+docker-compose logs -f
 ```
 
-### Creating New Features
-
-1. **Add Model**: Create in `src/models/`
-2. **Add Routes**: Create in `src/routes/`
-3. **Add Controller**: Create in `src/controllers/`
-4. **Add Service**: Create in `src/services/` for business logic
-5. **Add Middleware**: Create in `src/middleware/` if needed
-6. **Update Tests**: Add tests for new features
-
-## 📝 Next Steps
-
-### Immediate Tasks
-1. **Implement Presentation Controller**: Complete CRUD operations
-2. **Build Slide Generation Engine**: Integrate Gemini service with job queue
-3. **Add Export Services**: Implement Puppeteer and PptxGenJS exporters
-4. **Setup BullMQ**: Configure background job processing
-5. **Create Frontend**: Build Next.js application
-6. **Admin Dashboard**: Implement analytics and management UI
-7. **Payment Integration**: Add Stripe for subscriptions
-8. **Email Service**: Configure nodemailer for notifications
-
-### Future Enhancements
-- **Real-time Collaboration**: Multiple users editing same presentation
-- **Template Library**: Pre-built professional templates
-- **Image Generation**: AI-generated images for slides
-- **Voice Narration**: TTS for slide presentations
-- **Analytics**: User behavior and usage analytics
-- **API Access**: REST API for enterprise customers
-- **Mobile Apps**: iOS and Android applications
-- **Integration**: Google Slides, PowerPoint plugins
+---
 
 ## 🤝 Contributing
 
-This is a comprehensive foundation for an AI slide generation platform. The architecture is designed for scalability and maintainability. Feel free to extend and customize based on your needs.
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
 
 ## 📄 License
 
-MIT License - feel free to use this for your own projects.
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
 
 ## 🆘 Support
 
-For issues or questions:
-- Check logs in `backend/logs/`
-- Review environment configuration
-- Verify MongoDB and Redis connections
-- Check API endpoint responses
+For issues and questions:
+1. Check the troubleshooting section above
+2. Review `BEGINNER_COMPLETE_GUIDE.md` for detailed setup instructions
+3. Open an issue on GitHub
+4. Contact: [your email or support channel]
 
-## 📞 Contact
+---
+
+## 🎯 Roadmap
+
+### Completed ✅
+- User authentication and authorization
+- Credit-based subscription system
+- AI slide generation from prompts
+- Document upload and processing
+- Dashboard UI
+- Rate limiting and security
+
+### In Progress 🚧
+- Export to PDF/PPTX
+- Slide editor interface
+- Payment integration (Stripe)
+
+### Planned 📋
+- Template library
+- Collaboration features
+- Advanced AI customization
+- Mobile app
+- Analytics dashboard
+
+---
+
+## 👨‍💻 Development Team
 
 Built with ❤️ for creating amazing presentations with AI.
 
 ---
 
-**Note**: This is a comprehensive foundation. The backend API structure, authentication, credit system, document processing, and AI integration are complete. The remaining tasks are:
-1. Complete presentation controller implementation
-2. Build export services
-3. Setup BullMQ job queue
-4. Develop frontend application
-5. Create admin dashboard
+## 📚 Additional Documentation
 
-The architecture is solid and ready for these implementations!
+- `BEGINNER_COMPLETE_GUIDE.md` - Step-by-step setup for beginners
+- `DEPLOYMENT.md` - Detailed deployment instructions
+- `API_DOCUMENTATION.md` - Complete API reference (coming soon)
+
+---
+
+**Last Updated:** December 2024
+**Version:** 1.0.0

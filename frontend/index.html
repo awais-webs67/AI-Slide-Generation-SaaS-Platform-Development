@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Slides Platform - Generate Presentations with AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold">
+                    <i class="fas fa-presentation mr-2"></i>AI Slides
+                </div>
+                <div id="nav-menu" class="space-x-4">
+                    <button onclick="showSection('home')" class="hover:text-gray-200">Home</button>
+                    <button onclick="showSection('features')" class="hover:text-gray-200">Features</button>
+                    <button onclick="showSection('pricing')" class="hover:text-gray-200">Pricing</button>
+                    <button onclick="showLogin()" class="bg-white text-purple-600 px-4 py-2 rounded-lg hover:bg-gray-100">Login</button>
+                    <button onclick="showRegister()" class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600">Sign Up</button>
+                </div>
+                <div id="user-menu" class="hidden space-x-4">
+                    <span id="user-name" class="font-semibold"></span>
+                    <span id="user-credits" class="bg-yellow-500 px-3 py-1 rounded-full text-sm"></span>
+                    <button onclick="showDashboard()" class="hover:text-gray-200">Dashboard</button>
+                    <button onclick="logout()" class="bg-red-500 px-4 py-2 rounded-lg hover:bg-red-600">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home-section" class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-6xl font-bold mb-6">Create Amazing Presentations with AI</h1>
+            <p class="text-2xl mb-8">Upload documents or describe your topic. Let AI generate beautiful slides instantly.</p>
+            <div class="space-x-4">
+                <button onclick="showRegister()" class="bg-white text-purple-600 px-8 py-4 rounded-lg text-xl font-semibold hover:bg-gray-100 transform hover:scale-105 transition">
+                    Start Free Trial <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+                <button onclick="showSection('features')" class="border-2 border-white px-8 py-4 rounded-lg text-xl font-semibold hover:bg-white hover:text-purple-600 transition">
+                    Learn More
+                </button>
+            </div>
+            <div class="mt-12 glass rounded-xl p-6 max-w-2xl mx-auto">
+                <p class="text-lg"><i class="fas fa-gift mr-2"></i> <strong>Free Trial:</strong> 50 credits | 7 days | No credit card required</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features-section" class="hidden py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-12">Powerful Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition">
+                    <div class="text-5xl text-purple-600 mb-4"><i class="fas fa-file-upload"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Upload Documents</h3>
+                    <p class="text-gray-600">Upload PDF, DOCX, or TXT files. AI extracts content and creates slides automatically.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition">
+                    <div class="text-5xl text-purple-600 mb-4"><i class="fas fa-brain"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">AI-Powered Generation</h3>
+                    <p class="text-gray-600">Google Gemini AI analyzes content, creates outlines, and generates beautiful slides.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition">
+                    <div class="text-5xl text-purple-600 mb-4"><i class="fas fa-download"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Export Anywhere</h3>
+                    <p class="text-gray-600">Download as PDF or PowerPoint. Use in presentations, meetings, or classes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing-section" class="hidden py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-12">Simple, Transparent Pricing</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Free Trial -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-bold mb-4">Free Trial</h3>
+                    <div class="text-4xl font-bold mb-4">$0</div>
+                    <p class="text-gray-600 mb-6">7 days</p>
+                    <ul class="space-y-3 mb-8">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> 50 credits</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> 5 presentations</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> 10 slides each</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> 1 export</li>
+                    </ul>
+                    <button onclick="showRegister()" class="w-full bg-gray-200 py-3 rounded-lg font-semibold hover:bg-gray-300">Start Free</button>
+                </div>
+                <!-- Starter -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-bold mb-4">Starter</h3>
+                    <div class="text-4xl font-bold mb-4">$9.99<span class="text-lg">/mo</span></div>
+                    <p class="text-gray-600 mb-6">For individuals</p>
+                    <ul class="space-y-3 mb-8">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> 500 credits/month</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Unlimited presentations</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> 20 slides max</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> 10 exports/month</li>
+                    </ul>
+                    <button class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700">Choose Plan</button>
+                </div>
+                <!-- Professional -->
+                <div class="bg-gradient-to-br from-purple-600 to-indigo-600 text-white rounded-xl shadow-2xl p-8 transform scale-105">
+                    <div class="bg-yellow-500 text-black px-3 py-1 rounded-full text-sm inline-block mb-4">POPULAR</div>
+                    <h3 class="text-2xl font-bold mb-4">Professional</h3>
+                    <div class="text-4xl font-bold mb-4">$29.99<span class="text-lg">/mo</span></div>
+                    <p class="mb-6">For professionals</p>
+                    <ul class="space-y-3 mb-8">
+                        <li><i class="fas fa-check mr-2"></i> 2000 credits/month</li>
+                        <li><i class="fas fa-check mr-2"></i> Unlimited presentations</li>
+                        <li><i class="fas fa-check mr-2"></i> 50 slides max</li>
+                        <li><i class="fas fa-check mr-2"></i> Unlimited exports</li>
+                    </ul>
+                    <button class="w-full bg-white text-purple-600 py-3 rounded-lg font-semibold hover:bg-gray-100">Choose Plan</button>
+                </div>
+                <!-- Enterprise -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-bold mb-4">Enterprise</h3>
+                    <div class="text-4xl font-bold mb-4">$99.99<span class="text-lg">/mo</span></div>
+                    <p class="text-gray-600 mb-6">For teams</p>
+                    <ul class="space-y-3 mb-8">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> 10000 credits/month</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Everything unlimited</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Custom branding</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i> Priority support</li>
+                    </ul>
+                    <button class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700">Choose Plan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+            <h2 class="text-3xl font-bold mb-6">Welcome Back</h2>
+            <form id="login-form" onsubmit="login(event)">
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Email</label>
+                    <input type="email" id="login-email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="you@example.com">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 mb-2">Password</label>
+                    <input type="password" id="login-password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="••••••••">
+                </div>
+                <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 mb-4">
+                    Login <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+                <p class="text-center text-gray-600">Don't have an account? <button type="button" onclick="switchToRegister()" class="text-purple-600 font-semibold">Sign up</button></p>
+            </form>
+            <button onclick="closeModal('login-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+            <h2 class="text-3xl font-bold mb-6">Start Free Trial</h2>
+            <form id="register-form" onsubmit="register(event)">
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Full Name</label>
+                    <input type="text" id="register-name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="John Doe">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Email</label>
+                    <input type="email" id="register-email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="you@example.com">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 mb-2">Password</label>
+                    <input type="password" id="register-password" required minlength="8" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="••••••••">
+                    <p class="text-sm text-gray-500 mt-1">Minimum 8 characters</p>
+                </div>
+                <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 mb-4">
+                    Create Account <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+                <p class="text-center text-gray-600">Already have an account? <button type="button" onclick="switchToLogin()" class="text-purple-600 font-semibold">Login</button></p>
+            </form>
+            <button onclick="closeModal('register-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="dashboard-section" class="hidden min-h-screen bg-gray-50 py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-4xl font-bold">My Dashboard</h1>
+                <button onclick="showCreateModal()" class="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700">
+                    <i class="fas fa-plus mr-2"></i> New Presentation
+                </button>
+            </div>
+            
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow">
+                    <div class="text-gray-500 mb-2">Credits Balance</div>
+                    <div id="dashboard-credits" class="text-3xl font-bold text-purple-600">--</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow">
+                    <div class="text-gray-500 mb-2">Presentations</div>
+                    <div id="dashboard-presentations" class="text-3xl font-bold">--</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow">
+                    <div class="text-gray-500 mb-2">Slides Generated</div>
+                    <div id="dashboard-slides" class="text-3xl font-bold">--</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow">
+                    <div class="text-gray-500 mb-2">Subscription</div>
+                    <div id="dashboard-plan" class="text-3xl font-bold capitalize">--</div>
+                </div>
+            </div>
+
+            <!-- Presentations List -->
+            <div class="bg-white rounded-xl shadow p-6">
+                <h2 class="text-2xl font-bold mb-6">Your Presentations</h2>
+                <div id="presentations-list" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <p class="text-gray-500">No presentations yet. Create your first one!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Presentation Modal -->
+    <div id="create-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-xl p-8 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <h2 class="text-3xl font-bold mb-6">Create New Presentation</h2>
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">Presentation Title</label>
+                    <input type="text" id="create-title" required class="w-full px-4 py-3 border border-gray-300 rounded-lg" placeholder="Enter presentation title">
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">Choose Method</label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button onclick="selectMethod('document')" id="method-document" class="p-6 border-2 border-gray-300 rounded-lg hover:border-purple-600 transition">
+                            <i class="fas fa-file-upload text-4xl text-purple-600 mb-3"></i>
+                            <div class="font-semibold">Upload Document</div>
+                            <p class="text-sm text-gray-600">PDF, DOCX, TXT</p>
+                        </button>
+                        <button onclick="selectMethod('prompt')" id="method-prompt" class="p-6 border-2 border-gray-300 rounded-lg hover:border-purple-600 transition">
+                            <i class="fas fa-pen text-4xl text-purple-600 mb-3"></i>
+                            <div class="font-semibold">Describe Topic</div>
+                            <p class="text-sm text-gray-600">AI generates from scratch</p>
+                        </button>
+                    </div>
+                </div>
+                <div id="document-upload" class="hidden">
+                    <label class="block text-gray-700 font-semibold mb-2">Upload Document</label>
+                    <input type="file" id="document-file" accept=".pdf,.docx,.txt" class="w-full px-4 py-3 border border-gray-300 rounded-lg">
+                    <p class="text-sm text-gray-500 mt-2">Max 500MB. Supported: PDF, DOCX, TXT</p>
+                </div>
+                <div id="prompt-input" class="hidden">
+                    <label class="block text-gray-700 font-semibold mb-2">Describe Your Presentation</label>
+                    <textarea id="prompt-text" rows="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg" placeholder="Example: Create a presentation about artificial intelligence, covering its history, current applications, and future potential. Include 10 slides with images and charts."></textarea>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">Number of Slides</label>
+                    <input type="number" id="slide-count" value="10" min="5" max="50" class="w-full px-4 py-3 border border-gray-300 rounded-lg">
+                </div>
+                <div class="flex gap-4">
+                    <button onclick="createPresentation()" class="flex-1 bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700">
+                        <i class="fas fa-magic mr-2"></i> Generate Presentation
+                    </button>
+                    <button onclick="closeModal('create-modal')" class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-100">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification" class="hidden fixed bottom-6 right-6 bg-white rounded-lg shadow-2xl p-6 max-w-md z-50">
+        <div class="flex items-start">
+            <div id="notification-icon" class="text-3xl mr-4"></div>
+            <div>
+                <div id="notification-title" class="font-bold text-lg mb-1"></div>
+                <div id="notification-message" class="text-gray-600"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.0/dist/axios.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Slides Platform - Complete Setup Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f8f9fa;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 4px solid #667eea;
+        }
+        
+        .header h1 {
+            font-size: 42px;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            font-size: 20px;
+            color: #666;
+            font-weight: 300;
+        }
+        
+        .version {
+            text-align: center;
+            color: #999;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        h2 {
+            color: #667eea;
+            font-size: 32px;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        h3 {
+            color: #764ba2;
+            font-size: 24px;
+            margin-top: 35px;
+            margin-bottom: 15px;
+        }
+        
+        h4 {
+            color: #555;
+            font-size: 18px;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .feature-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        
+        .feature-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .feature-box ul {
+            list-style-type: none;
+            margin-left: 0;
+        }
+        
+        .feature-box li:before {
+            content: "✅ ";
+            margin-right: 8px;
+        }
+        
+        .info-box {
+            background: #e8f4f8;
+            border-left: 5px solid #4a90e2;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        
+        .success-box {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .code-inline {
+            background: #f4f4f4;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #d63384;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .architecture-diagram {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            font-family: monospace;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .checklist {
+            list-style-type: none;
+            margin-left: 0;
+        }
+        
+        .checklist li {
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .checklist li:before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            font-size: 20px;
+            color: #667eea;
+        }
+        
+        .page-break {
+            page-break-after: always;
+        }
+        
+        .toc {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .toc h2 {
+            margin-top: 0;
+            border-bottom: none;
+        }
+        
+        .toc ol {
+            margin-left: 20px;
+        }
+        
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            
+            .page-break {
+                page-break-after: always;
+            }
+            
+            .code-block {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 AI Slides Platform</h1>
+            <div class="subtitle">Complete Setup Guide - Frontend & Backend</div>
+            <div class="version">Version 2.0 | December 2024 | Full-Stack Edition</div>
+        </div>
+
+        <div class="toc">
+            <h2>📚 Table of Contents</h2>
+            <ol>
+                <li><a href="#what-building">What You're Building</a></li>
+                <li><a href="#requirements">What You Need to Install</a></li>
+                <li><a href="#installation">Step-by-Step Installation</a></li>
+                <li><a href="#getting-code">Getting the Code</a></li>
+                <li><a href="#backend-setup">Setting Up the Backend</a></li>
+                <li><a href="#frontend-setup">Setting Up the Frontend</a></li>
+                <li><a href="#running">Running the Full Application</a></li>
+                <li><a href="#testing">Testing Your Application</a></li>
+                <li><a href="#understanding">Understanding the Application</a></li>
+                <li><a href="#troubleshooting">Troubleshooting</a></li>
+                <li><a href="#next-steps">Next Steps</a></li>
+            </ol>
+        </div>
+
+        <div class="page-break"></div>
+
+        <h2 id="what-building">🎯 What You're Building</h2>
+        
+        <p>You're setting up a <strong>complete full-stack AI-powered slide generation SaaS platform</strong> that includes:</p>
+        
+        <div class="feature-box">
+            <h3>Frontend (User Interface)</h3>
+            <ul>
+                <li>Beautiful landing page with modern design</li>
+                <li>User registration and login system</li>
+                <li>Dashboard showing credits and presentations</li>
+                <li>Create presentations from text prompts OR uploaded documents</li>
+                <li>Responsive design works on desktop, tablet, and mobile</li>
+            </ul>
+        </div>
+        
+        <div class="feature-box">
+            <h3>Backend (Server & AI Logic)</h3>
+            <ul>
+                <li>Express.js API server handling all requests</li>
+                <li>MongoDB database storing users and presentations</li>
+                <li>Google Gemini AI generating slide content</li>
+                <li>Document processing for PDF, DOCX, DOC, TXT files</li>
+                <li>Credit system managing subscription and usage</li>
+                <li>JWT authentication securing all endpoints</li>
+            </ul>
+        </div>
+        
+        <div class="success-box">
+            <strong>Status:</strong> Complete full-stack application ready to run! Both frontend and backend are fully implemented and tested.
+        </div>
+
+        <div class="page-break"></div>
+
+        <h2 id="requirements">💻 What You Need to Install</h2>
+
+        <h3>Required Software</h3>
+
+        <table>
+            <tr>
+                <th>Software</th>
+                <th>Purpose</th>
+                <th>Version</th>
+                <th>Size</th>
+            </tr>
+            <tr>
+                <td><strong>Node.js</strong></td>
+                <td>Runs JavaScript code</td>
+                <td>18 or higher</td>
+                <td>~50 MB</td>
+            </tr>
+            <tr>
+                <td><strong>Git</strong></td>
+                <td>Download code from GitHub</td>
+                <td>2.x or higher</td>
+                <td>~45 MB</td>
+            </tr>
+            <tr>
+                <td><strong>Docker Desktop</strong></td>
+                <td>Runs MongoDB & Redis</td>
+                <td>20.x or higher</td>
+                <td>~500 MB</td>
+            </tr>
+            <tr>
+                <td><strong>Code Editor</strong></td>
+                <td>Edit configuration files</td>
+                <td>Any version</td>
+                <td>~100 MB</td>
+            </tr>
+            <tr>
+                <td><strong>Gemini API Key</strong></td>
+                <td>Access Google AI</td>
+                <td>-</td>
+                <td>FREE</td>
+            </tr>
+        </table>
+
+        <h3>Download Links</h3>
+        <ul>
+            <li><strong>Node.js:</strong> https://nodejs.org/</li>
+            <li><strong>Git:</strong> https://git-scm.com/downloads</li>
+            <li><strong>Docker Desktop:</strong> https://www.docker.com/products/docker-desktop/</li>
+            <li><strong>VS Code:</strong> https://code.visualstudio.com/</li>
+            <li><strong>Gemini API Key:</strong> https://makersuite.google.com/app/apikey</li>
+        </ul>
+
+        <div class="info-box">
+            <strong>💡 Getting Gemini API Key (FREE):</strong>
+            <ol>
+                <li>Visit https://makersuite.google.com/app/apikey</li>
+                <li>Sign in with your Google account</li>
+                <li>Click "Create API Key"</li>
+                <li>Copy the key (looks like: AIzaSyD...)</li>
+                <li>Save it - you'll need it later!</li>
+            </ol>
+        </div>
+
+        <div class="page-break"></div>
+
+        <h2 id="installation">🚀 Step-by-Step Installation</h2>
+
+        <h3><span class="step-number">1</span> Install Node.js</h3>
+
+        <h4>For Windows:</h4>
+        <ol>
+            <li>Go to https://nodejs.org/</li>
+            <li>Click "Download Node.js (LTS)" green button</li>
+            <li>Open the downloaded <span class="code-inline">.msi</span> file</li>
+            <li>Click "Next" through the installer</li>
+            <li>Accept license agreement</li>
+            <li>Click "Install" (enter admin password if asked)</li>
+            <li>Wait 2-3 minutes</li>
+            <li>Click "Finish"</li>
+        </ol>
+
+        <h4>For Mac:</h4>
+        <ol>
+            <li>Download macOS installer from https://nodejs.org/</li>
+            <li>Open the <span class="code-inline">.pkg</span> file</li>
+            <li>Follow installation steps</li>
+            <li>Enter your Mac password when asked</li>
+        </ol>
+
+        <h4>Verify Installation:</h4>
+        <div class="code-block">node --version    # Should show v18.x.x or higher
+npm --version     # Should show 9.x.x or higher</div>
+
+        <div class="page-break"></div>
+
+        <h3><span class="step-number">2</span> Install Git</h3>
+
+        <h4>For Windows:</h4>
+        <ol>
+            <li>Download from https://git-scm.com/download/win</li>
+            <li>Run the installer</li>
+            <li>Accept all default options (keep clicking "Next")</li>
+            <li>Click "Install"</li>
+        </ol>
+
+        <h4>For Mac:</h4>
+        <div class="code-block"># Install Xcode Command Line Tools
+xcode-select --install
+
+# Or use Homebrew
+brew install git</div>
+
+        <h4>Verify Installation:</h4>
+        <div class="code-block">git --version    # Should show git version 2.x.x</div>
+
+        <div class="page-break"></div>
+
+        <h3><span class="step-number">3</span> Install Docker Desktop</h3>
+
+        <h4>For Windows:</h4>
+        <ol>
+            <li>Go to https://www.docker.com/products/docker-desktop/</li>
+            <li>Click "Download for Windows"</li>
+            <li>Run the installer</li>
+            <li><strong>Restart your computer</strong> when prompted</li>
+            <li>Open Docker Desktop after restart</li>
+            <li>Accept the service agreement</li>
+            <li>Wait for Docker to start (green icon in system tray)</li>
+        </ol>
+
+        <h4>For Mac:</h4>
+        <ol>
+            <li>Download for Mac (Intel or Apple Silicon)</li>
+            <li>Open the <span class="code-inline">.dmg</span> file</li>
+            <li>Drag Docker to Applications folder</li>
+            <li>Open Docker from Applications</li>
+            <li>Enter password when asked</li>
+        </ol>
+
+        <h4>Verify Docker is Running:</h4>
+        <div class="code-block">docker --version
+docker-compose --version
+docker ps    # Should show empty list, not an error</div>
+
+        <div class="warning-box">
+            <strong>⚠️ Important:</strong> Docker requires system restart after installation. Make sure Docker Desktop shows a green icon before proceeding.
+        </div>
+
+        <div class="page-break"></div>
+
+        <h2 id="getting-code">📥 Getting the Code</h2>
+
+        <h3>Option 1: Clone from GitHub (Recommended)</h3>
+
+        <p>Open Terminal (Mac/Linux) or Command Prompt (Windows):</p>
+
+        <div class="code-block"># Navigate to where you want the project
+cd Desktop    # Or any folder you prefer
+
+# Clone the repository
+git clone &lt;YOUR_GITHUB_REPOSITORY_URL&gt;
+
+# Navigate into project
+cd webapp
+
+# Verify files are there
+ls    # Mac/Linux
+dir   # Windows</div>
+
+        <h3>Option 2: Download ZIP from GitHub</h3>
+        <ol>
+            <li>Go to your GitHub repository</li>
+            <li>Click the green "Code" button</li>
+            <li>Click "Download ZIP"</li>
+            <li>Extract the ZIP file</li>
+            <li>Open the extracted folder</li>
+        </ol>
+
+        <div class="page-break"></div>
+
+        <h2 id="backend-setup">🔧 Setting Up the Backend</h2>
+
+        <h3><span class="step-number">1</span> Navigate to Backend Directory</h3>
+        <div class="code-block">cd webapp/backend</div>
+
+        <h3><span class="step-number">2</span> Install Backend Dependencies</h3>
+        <p>This will download all necessary packages (Express, MongoDB, AI libraries, etc.):</p>
+        <div class="code-block">npm install</div>
+        <p><strong>Wait time:</strong> 2-5 minutes depending on internet speed</p>
+
+        <h3><span class="step-number">3</span> Create Environment Configuration</h3>
+        <div class="code-block"># Copy the example file
+cp .env.example .env
+
+# Windows: copy .env.example .env</div>
+
+        <h3><span class="step-number">4</span> Edit the .env File</h3>
+        <p>Open <span class="code-inline">backend/.env</span> in your text editor and update these values:</p>
+
+        <div class="code-block"># Server Configuration
+NODE_ENV=development
+PORT=5000
+
+# Database (Don't change for local development)
+MONGODB_URI=mongodb://localhost:27017/ai-slides-platform
+
+# Redis (Don't change for local development)
+REDIS_HOST=localhost
+REDIS_PORT=6379
+
+# JWT Authentication - CHANGE THESE!
+JWT_SECRET=your_very_secure_random_string_12345
+JWT_REFRESH_SECRET=another_different_random_string_67890
+JWT_EXPIRE=15m
+JWT_REFRESH_EXPIRE=7d
+
+# Google Gemini AI - PASTE YOUR API KEY HERE!
+GEMINI_API_KEY=AIzaSyD_your_actual_api_key_here
+
+# CORS (Frontend URL)
+CORS_ORIGIN=http://localhost:3000
+
+# File Upload
+MAX_FILE_SIZE=524288000
+UPLOAD_DIR=./uploads</div>
+
+        <div class="warning-box">
+            <strong>⚠️ Important:</strong> You MUST replace:
+            <ul>
+                <li><span class="code-inline">JWT_SECRET</span> with a random string (min 32 characters)</li>
+                <li><span class="code-inline">JWT_REFRESH_SECRET</span> with another random string</li>
+                <li><span class="code-inline">GEMINI_API_KEY</span> with your actual API key from Google</li>
+            </ul>
+            Generate random strings at: https://randomkeygen.com/
+        </div>
+
+        <div class="page-break"></div>
+
+        <h2 id="frontend-setup">🎨 Setting Up the Frontend</h2>
+
+        <h3><span class="step-number">1</span> Navigate to Frontend Directory</h3>
+        <div class="code-block"># From project root
+cd webapp/frontend
+
+# Or from backend directory
+cd ../frontend</div>
+
+        <h3><span class="step-number">2</span> Verify Frontend Files</h3>
+        <p>You should see these files:</p>
+        <ul>
+            <li><span class="code-inline">index.html</span> - The main HTML page</li>
+            <li><span class="code-inline">app.js</span> - JavaScript logic</li>
+            <li><span class="code-inline">package.json</span> - Project configuration</li>
+        </ul>
+
+        <div class="success-box">
+            <strong>✅ No Installation Needed!</strong><br>
+            The frontend uses vanilla JavaScript and CDN libraries, so <strong>NO npm install</strong> is required. All dependencies (TailwindCSS, Font Awesome, Axios) are loaded via CDN links in the HTML.
+        </div>
+
+        <div class="page-break"></div>
+
+        <h2 id="running">🚀 Running the Full Application</h2>
+
+        <p>You'll start <strong>3 things</strong> in order:</p>
+        <ol>
+            <li>Docker containers (MongoDB + Redis)</li>
+            <li>Backend server (Express API)</li>
+            <li>Frontend (HTML in browser)</li>
+        </ol>
+
+        <h3><span class="step-number">1</span> Start Docker Containers</h3>
+        <p>Open a <strong>NEW terminal</strong> and navigate to project root:</p>
+        <div class="code-block">cd webapp
+
+# Start MongoDB and Redis
+docker-compose up -d</div>
+
+        <p><strong>The <span class="code-inline">-d</span> means "detached mode" (runs in background)</strong></p>
+
+        <p>Verify containers are running:</p>
+        <div class="code-block">docker-compose ps</div>
+
+        <p>You should see:</p>
+        <div class="code-block">NAME      SERVICE    STATUS       PORTS
+mongodb   mongodb    running      0.0.0.0:27017->27017/tcp
+redis     redis      running      0.0.0.0:6379->6379/tcp</div>
+
+        <div class="page-break"></div>
+
+        <h3><span class="step-number">2</span> Start Backend Server</h3>
+        <p>Open a <strong>NEW terminal</strong> (keep Docker terminal running):</p>
+        <div class="code-block">cd webapp/backend
+
+# Start backend in development mode
+npm run dev</div>
+
+        <p>You should see:</p>
+        <div class="code-block">[INFO] Server running on port 5000
+[INFO] MongoDB connected: localhost
+[INFO] Redis connected: localhost:6379</div>
+
+        <div class="info-box">
+            <strong>💡 Keep this terminal open!</strong> Don't close it while using the app.<br>
+            <strong>To stop backend later:</strong> Press <span class="code-inline">Ctrl + C</span>
+        </div>
+
+        <div class="page-break"></div>
+
+        <h3><span class="step-number">3</span> Start Frontend</h3>
+
+        <h4>Option A: Simple HTTP Server (Recommended)</h4>
+        <p>Open a <strong>NEW terminal</strong> (keep backend terminal running):</p>
+        <div class="code-block">cd webapp/frontend
+
+# Start a simple web server
+python3 -m http.server 3000
+
+# Or if you have Node.js http-server
+npx http-server -p 3000</div>
+
+        <h4>Option B: Open Directly in Browser</h4>
+        <ol>
+            <li>Navigate to <span class="code-inline">webapp/frontend</span> folder</li>
+            <li>Right-click on <span class="code-inline">index.html</span></li>
+            <li>Choose "Open With" → Your web browser</li>
+        </ol>
+
+        <div class="warning-box">
+            <strong>⚠️ Note:</strong> Some features may not work without a proper server due to CORS restrictions. Option A is recommended.
+        </div>
+
+        <h3><span class="step-number">4</span> Open in Browser</h3>
+        <p>Open your web browser and go to:</p>
+        <div class="code-block">http://localhost:3000</div>
+
+        <p>You should see:</p>
+        <ul>
+            <li>Beautiful landing page with purple gradient</li>
+            <li>"AI Slides Platform" logo</li>
+            <li>"Sign Up" and "Login" buttons</li>
+            <li>Features and pricing sections</li>
+        </ul>
+
+        <div class="success-box">
+            <strong>🎉 Success!</strong> Your full-stack application is now running!
+        </div>
+
+        <div class="page-break"></div>
+
+        <h2 id="testing">🧪 Testing Your Application</h2>
+
+        <h3>Test 1: Register a New Account</h3>
+        <ol>
+            <li>Click <strong>"Sign Up"</strong> button on the landing page</li>
+            <li>Fill in the registration form:
+                <ul>
+                    <li><strong>Name:</strong> Your Name</li>
+                    <li><strong>Email:</strong> test@example.com</li>
+                    <li><strong>Password:</strong> SecurePass123!</li>
+                </ul>
+            </li>
+            <li>Click <strong>"Create Account"</strong></li>
+        </ol>
+
+        <p><strong>What should happen:</strong></p>
+        <ul>
+            <li>Success notification appears</li>
+            <li>You're automatically logged in</li>
+            <li>Dashboard appears showing your 50 trial credits</li>
+        </ul>
+
+        <h3>Test 2: View Dashboard</h3>
+        <p>After logging in, you should see:</p>
+        <ul>
+            <li><strong>Credits Balance:</strong> 50 credits</li>
+            <li><strong>Presentations Created:</strong> 0</li>
+            <li><strong>Create New Presentation</strong> button</li>
+            <li>Empty presentations list</li>
+        </ul>
+
+        <h3>Test 3: Create Presentation from Prompt</h3>
+        <ol>
+            <li>Click <strong>"Create New Presentation"</strong> button</li>
+            <li>Enter a title: "Introduction to AI"</li>
+            <li>Select <strong>"Text Prompt"</strong> method</li>
+            <li>Enter prompt: "Create a presentation about artificial intelligence"</li>
+            <li>Select <strong>10 slides</strong></li>
+            <li>Click <strong>"Generate Presentation"</strong></li>
+        </ol>
+
+        <p><strong>What should happen:</strong></p>
+        <ul>
+            <li>"Generating presentation..." message appears</li>
+            <li>Credits are deducted (10 slides = 10 credits)</li>
+            <li>Presentation appears in your list</li>
+            <li>Success notification shows</li>
+        </ul>
+
+        <h3>Test 4: Create Presentation from Document</h3>
+        <ol>
+            <li>Click <strong>"Create New Presentation"</strong> button</li>
+            <li>Enter a title: "Document Summary"</li>
+            <li>Select <strong>"Document Upload"</strong> method</li>
+            <li>Click <strong>"Choose File"</strong></li>
+            <li>Select a PDF, DOCX, or TXT file</li>
+            <li>Select <strong>15 slides</strong></li>
+            <li>Click <strong>"Generate Presentation"</strong></li>
+        </ol>
+
+        <div class="page-break"></div>
+
+        <h2 id="understanding">📖 Understanding the Application</h2>
+
+        <h3>Application Architecture</h3>
+
+        <div class="architecture-diagram">
+┌─────────────────────────────────────────────────┐
+│                  FRONTEND                       │
+│  (HTML + JavaScript + TailwindCSS)             │
+│  http://localhost:3000                          │
+│                                                  │
+│  - Landing Page                                 │
+│  - Login/Register Modals                        │
+│  - Dashboard                                    │
+│  - Create Presentation Modal                    │
+└─────────────────┬───────────────────────────────┘
+                  │ HTTP Requests (Axios)
+                  │ (Login, Create, Get Data)
+                  ▼
+┌─────────────────────────────────────────────────┐
+│                  BACKEND                        │
+│  (Express.js API Server)                        │
+│  http://localhost:5000                          │
+│                                                  │
+│  - Authentication (JWT)                         │
+│  - Presentation CRUD                            │
+│  - Document Processing                          │
+│  - Credit Management                            │
+└───┬──────────────────┬──────────────────┬───────┘
+    │                  │                  │
+    ▼                  ▼                  ▼
+┌────────┐      ┌─────────────┐    ┌────────────┐
+│MongoDB │      │   Redis     │    │ Google     │
+│Database│      │   Cache     │    │ Gemini AI  │
+│        │      │             │    │            │
+│Users   │      │Rate Limits  │    │Slide Gen   │
+│Presents│      │Sessions     │    │            │
+└────────┘      └─────────────┘    └────────────┘
+   :27017          :6379            API Cloud
+        </div>
+
+        <h3>How It Works</h3>
+
+        <h4>1. User Registration & Login</h4>
+        <ul>
+            <li>User enters credentials in frontend form</li>
+            <li>Frontend sends POST request to <span class="code-inline">/api/v1/auth/register</span> or <span class="code-inline">/login</span></li>
+            <li>Backend validates data, hashes password</li>
+            <li>Creates user in MongoDB with 50 trial credits</li>
+            <li>Returns JWT token</li>
+            <li>Frontend stores token in LocalStorage</li>
+            <li>Token included in all future requests</li>
+        </ul>
+
+        <h4>2. Creating Presentation</h4>
+        <ul>
+            <li>User clicks "Create Presentation"</li>
+            <li>Enters title and prompt OR uploads document</li>
+            <li>Frontend sends request to <span class="code-inline">/api/v1/presentations</span></li>
+            <li>Backend checks user credits</li>
+            <li>Deducts credits from user</li>
+            <li>Sends prompt to Google Gemini AI</li>
+            <li>AI generates slide outline</li>
+            <li>Saves presentation to MongoDB</li>
+            <li>Returns presentation data</li>
+            <li>Frontend displays success</li>
+        </ul>
+
+        <div class="page-break"></div>
+
+        <h2 id="troubleshooting">🐛 Troubleshooting</h2>
+
+        <h3>Problem: "Cannot connect to MongoDB"</h3>
+        <div class="code-block">Error: connect ECONNREFUSED 127.0.0.1:27017</div>
+
+        <p><strong>Solutions:</strong></p>
+        <ol>
+            <li>Check if Docker is running: <span class="code-inline">docker ps</span></li>
+            <li>Start containers: <span class="code-inline">docker-compose up -d</span></li>
+            <li>Verify MongoDB: <span class="code-inline">docker-compose ps</span></li>
+            <li>Check Docker Desktop - should have green icon</li>
+        </ol>
+
+        <h3>Problem: "CORS Error" in Browser</h3>
+        <div class="code-block">Access to XMLHttpRequest blocked by CORS policy</div>
+
+        <p><strong>Solutions:</strong></p>
+        <ol>
+            <li>Check <span class="code-inline">backend/.env</span>: <span class="code-inline">CORS_ORIGIN=http://localhost:3000</span></li>
+            <li>Ensure backend runs on port 5000</li>
+            <li>Ensure frontend runs on port 3000</li>
+            <li>Restart backend after changing <span class="code-inline">.env</span></li>
+        </ol>
+
+        <h3>Problem: "Gemini API Error"</h3>
+        <div class="code-block">Error: API key not valid</div>
+
+        <p><strong>Solutions:</strong></p>
+        <ol>
+            <li>Check API key in <span class="code-inline">backend/.env</span></li>
+            <li>Verify at https://makersuite.google.com/app/apikey</li>
+            <li>Generate new key if needed</li>
+            <li>Restart backend: Press <span class="code-inline">Ctrl+C</span>, then <span class="code-inline">npm run dev</span></li>
+        </ol>
+
+        <h3>Problem: "Port 5000 already in use"</h3>
+        <div class="code-block">Error: listen EADDRINUSE :::5000</div>
+
+        <p><strong>Solutions:</strong></p>
+
+        <h4>Mac/Linux:</h4>
+        <div class="code-block">lsof -i :5000
+kill -9 &lt;PID&gt;</div>
+
+        <h4>Windows:</h4>
+        <div class="code-block">netstat -ano | findstr :5000
+taskkill /PID &lt;PID&gt; /F</div>
+
+        <h3>Problem: "Login not working"</h3>
+        <p><strong>Solutions:</strong></p>
+        <ol>
+            <li>Check browser console (F12) for errors</li>
+            <li>Verify backend: <span class="code-inline">curl http://localhost:5000/health</span></li>
+            <li>Check MongoDB is running</li>
+            <li>Verify API_URL in <span class="code-inline">frontend/app.js</span></li>
+        </ol>
+
+        <div class="page-break"></div>
+
+        <h2>✅ Verification Checklist</h2>
+
+        <ul class="checklist">
+            <li>Node.js installed (<span class="code-inline">node --version</span> works)</li>
+            <li>Git installed (<span class="code-inline">git --version</span> works)</li>
+            <li>Docker installed (<span class="code-inline">docker --version</span> works)</li>
+            <li>Docker containers running (<span class="code-inline">docker-compose ps</span> shows 2 services)</li>
+            <li>Backend dependencies installed (<span class="code-inline">backend/node_modules</span> exists)</li>
+            <li><span class="code-inline">.env</span> file created with Gemini API key</li>
+            <li>Backend server running (terminal shows "Server running on port 5000")</li>
+            <li>Frontend server running (terminal shows "Serving HTTP on port 3000")</li>
+            <li>Browser shows landing page at <span class="code-inline">http://localhost:3000</span></li>
+            <li>Can register new account</li>
+            <li>Can login successfully</li>
+            <li>Dashboard shows 50 trial credits</li>
+            <li>Can create presentation from prompt</li>
+            <li>Can upload document</li>
+        </ul>
+
+        <div class="page-break"></div>
+
+        <h2 id="next-steps">🎯 Next Steps</h2>
+
+        <h3>1. Customize the Application</h3>
+
+        <h4>Change Colors</h4>
+        <p>Edit <span class="code-inline">frontend/index.html</span> - find <span class="code-inline">.gradient-bg</span>:</p>
+        <div class="code-block">.gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Change to your colors */
+}</div>
+
+        <h4>Change Logo/Name</h4>
+        <p>Edit <span class="code-inline">frontend/index.html</span> - find the logo section:</p>
+        <div class="code-block">&lt;div class="text-2xl font-bold"&gt;
+    &lt;i class="fas fa-presentation mr-2"&gt;&lt;/i&gt;AI Slides
+&lt;/div&gt;</div>
+
+        <h3>2. Add New Features</h3>
+        <ul>
+            <li>Export presentations to PDF/PPTX</li>
+            <li>Add slide templates</li>
+            <li>Implement payment integration (Stripe)</li>
+            <li>Add collaboration features</li>
+            <li>Create mobile app version</li>
+        </ul>
+
+        <h3>3. Deploy to Production</h3>
+
+        <h4>Backend Deployment Options:</h4>
+        <ul>
+            <li><strong>Heroku:</strong> Easy deployment for Node.js apps</li>
+            <li><strong>DigitalOcean:</strong> VPS hosting with more control</li>
+            <li><strong>AWS:</strong> Scalable cloud infrastructure</li>
+        </ul>
+
+        <h4>Frontend Deployment Options:</h4>
+        <ul>
+            <li><strong>Netlify:</strong> Drag & drop deployment (Free)</li>
+            <li><strong>Vercel:</strong> One-click deployment (Free)</li>
+            <li><strong>GitHub Pages:</strong> Free static site hosting</li>
+        </ul>
+
+        <h4>Database Hosting:</h4>
+        <ul>
+            <li><strong>MongoDB Atlas:</strong> Free tier available</li>
+            <li><strong>Redis Labs:</strong> Free tier available</li>
+        </ul>
+
+        <div class="page-break"></div>
+
+        <h2>🎊 Congratulations!</h2>
+
+        <div class="success-box">
+            <h3>What You've Accomplished:</h3>
+            <ul>
+                <li>✅ Installed all required software</li>
+                <li>✅ Set up a complete full-stack application</li>
+                <li>✅ Connected frontend to backend</li>
+                <li>✅ Integrated Google Gemini AI</li>
+                <li>✅ Set up MongoDB and Redis databases</li>
+                <li>✅ Created your first AI-generated presentation</li>
+            </ul>
+        </div>
+
+        <h3>You're Now Ready To:</h3>
+        <ul>
+            <li>Customize the platform for your needs</li>
+            <li>Add new features</li>
+            <li>Deploy to production</li>
+            <li>Learn more about full-stack development</li>
+        </ul>
+
+        <div class="info-box">
+            <h3>📚 Additional Documentation</h3>
+            <ul>
+                <li><strong>README.md</strong> - Quick reference and API documentation</li>
+                <li><strong>BEGINNER_COMPLETE_GUIDE.md</strong> - Text version of this guide</li>
+                <li><strong>DEPLOYMENT.md</strong> - Detailed deployment instructions</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>🆘 Getting Help</h3>
+            <ul>
+                <li>Review the troubleshooting section</li>
+                <li>Check official documentation links</li>
+                <li>Open an issue on GitHub</li>
+                <li>Consult the README.md file</li>
+            </ul>
+        </div>
+
+        <h3>📈 Useful Commands Reference</h3>
+        <div class="code-block"># Start everything
+cd webapp
+docker-compose up -d
+cd backend && npm run dev
+cd ../frontend && python3 -m http.server 3000
+
+# Stop everything
+# Press Ctrl+C in each terminal
+docker-compose down
+
+# View logs
+docker-compose logs mongodb
+docker-compose logs redis
+cd backend && cat logs/combined.log
+
+# Check status
+docker-compose ps
+curl http://localhost:5000/health
+curl http://localhost:3000</div>
+
+        <div class="header" style="margin-top: 80px; border-top: 4px solid #667eea; padding-top: 30px;">
+            <p style="text-align: center; color: #666;">
+                <strong>Last Updated:</strong> December 2024<br>
+                <strong>Version:</strong> 2.0 (Complete Full-Stack)<br>
+                <strong>Built with ❤️</strong> for creating amazing presentations with AI
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        // Print instructions
+        window.addEventListener('load', function() {
+            console.log('%c📄 To save as PDF:', 'font-size: 16px; font-weight: bold; color: #667eea;');
+            console.log('%c1. Press Ctrl+P (Windows/Linux) or Cmd+P (Mac)', 'font-size: 14px;');
+            console.log('%c2. Select "Save as PDF" as destination', 'font-size: 14px;');
+            console.log('%c3. Set margins to "None" or "Minimum"', 'font-size: 14px;');
+            console.log('%c4. Enable "Background graphics"', 'font-size: 14px;');
+            console.log('%c5. Click "Save"', 'font-size: 14px;');
+        });
+    </script>
+</body>
+</html>
